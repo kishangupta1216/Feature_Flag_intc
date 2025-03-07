@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic HTML Page</title>
     <script>
-        // Function to show an alert with the entered name
-        function greetUser() {
-            const userName = document.getElementById("nameInput").value;
-            if (userName) {
-                alert("Hello, " + userName + "! Welcome to my website.");
-            } else {
-                alert("Please enter your name.");
-            }
+        // Function to change the background color of the page
+        function changeBackgroundColor() {
+            const color = document.getElementById("colorPicker").value;
+            document.body.style.backgroundColor = color;
         }
     </script>
 </head>
@@ -25,12 +21,9 @@
         <p>This is a simple HTML file.</p>
         <p>Feel free to modify it!</p>
 
-        <!-- Form for user input -->
-        <form onsubmit="event.preventDefault(); greetUser();">
-            <label for="nameInput">Enter your name:</label>
-            <input type="text" id="nameInput" placeholder="Your name here" required>
-            <button type="submit">Submit</button>
-        </form>
+        <!-- Color picker to change the background color -->
+        <label for="colorPicker">Choose a background color:</label>
+        <input type="color" id="colorPicker" onchange="changeBackgroundColor()">
     </main>
 
     <footer>
