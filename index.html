@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic HTML File</title>
+    <title>Basic HTML Page</title>
+    <script>
+        // Function to show an alert with the entered name
+        function greetUser() {
+            const userName = document.getElementById("nameInput").value;
+            if (userName) {
+                alert("Hello, " + userName + "! Welcome to my website.");
+            } else {
+                alert("Please enter your name.");
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -11,8 +22,15 @@
     </header>
 
     <main>
-        <p>This is a basic HTML page template.</p>
-        <p>Feel free to modify and expand this file.</p>
+        <p>This is a simple HTML file.</p>
+        <p>Feel free to modify it!</p>
+
+        <!-- Form for user input -->
+        <form onsubmit="event.preventDefault(); greetUser();">
+            <label for="nameInput">Enter your name:</label>
+            <input type="text" id="nameInput" placeholder="Your name here" required>
+            <button type="submit">Submit</button>
+        </form>
     </main>
 
     <footer>
@@ -20,4 +38,3 @@
     </footer>
 </body>
 </html>
-
