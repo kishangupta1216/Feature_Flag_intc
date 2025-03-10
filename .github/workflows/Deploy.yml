@@ -28,9 +28,6 @@ jobs:
         git reset --hard  # Reset to ensure no uncommitted changes
         git clean -fd  # Clean up any untracked files
 
-    - name: Build the project (optional)
-      run: npm run build  # If you have a build step like this, make sure it generates the 'dist' folder
-
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
