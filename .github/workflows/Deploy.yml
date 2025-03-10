@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages with Feature Flags
+
+on:
+  push:
+    branches:
+      - main
+      - Feature_1
+      - Feature_2
+      - Feature_3
+    # Trigger deployment only on specific branches
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/Feature_1' || github.ref == 'refs/heads/Feature_2' || github.ref == 'refs/heads/Feature_3' || github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.1.0
+      with:
+        branch: gh-pages  # The branch that will contain your GitHub Pages site
+        folder: ./dist    # The folder where your build output is located, adjust accordingly
+        token: ${{ secrets.GH_TOKEN }} # GitHub automatically provides a token for accessing the repo
+
+    - name: Clean up and set feature flag (optional)
+      run: |
+        echo "Setting feature flag for branch ${GITHUB_REF}"
+        echo "Feature flag deployed: ${GITHUB_REF}" > ./dist/index.html
