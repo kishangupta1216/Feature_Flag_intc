@@ -22,28 +22,6 @@ jobs:
         git config user.name "kishangupta1216"
         git config user.email "guptakishan1216@gmail.com"
 
-    - name: Fetch the latest branches
-      run: git fetch origin
-
-    - name: Merge the feature branch into main
-      run: |
-        # Get the current branch name (either Feature_1 or Feature_2)
-        CURRENT_BRANCH=${GITHUB_REF##*/}
-
-        # Checkout to main
-        git checkout main
-
-        # Pull the latest changes from the remote main branch
-        git pull origin main
-
-        # Merge the feature branch into main
-        git merge origin/$CURRENT_BRANCH --no-ff -m "Merge $CURRENT_BRANCH into main"
-
-    - name: Push the merged changes to main
-      run: |
-        git push origin main
-
-
     - name: Initialize gh-pages branch (if not exists)
       run: |
         git fetch origin gh-pages || git checkout --orphan gh-pages  # Create the gh-pages branch if it doesn't exist
