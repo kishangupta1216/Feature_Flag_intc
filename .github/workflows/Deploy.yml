@@ -22,7 +22,7 @@ jobs:
       uses: jamesives/github-pages-deploy-action@v4
       with:
         branch: gh-pages  # The branch that will contain your GitHub Pages site
-        folder: ./dist    # The folder where your build output is located, adjust accordingly
+        folder: .   # The folder where your build output is located, adjust accordingly
         token: ${{ secrets.GH_TOKEN }} # GitHub automatically provides a token for accessing the repo
 
     - name: Clean up and set feature flag (optional)
