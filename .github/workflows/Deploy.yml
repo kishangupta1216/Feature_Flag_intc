@@ -17,25 +17,14 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
 
-    - name: Set up Git configuration
-      run: |
-        git config user.name "kishangupta1216"
-        git config user.email "guptakishan1216@gmail.com"
-
-    - name: Initialize gh-pages branch (if not exists)
-      run: |
-        git fetch origin gh-pages || git checkout --orphan gh-pages
-        git reset --hard
-        git clean -fd
-
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
-        folder: .  # Adjust if you're deploying from a different directory
-        token: ${{ secrets.GH_TOKEN }}
+        folder: ./  # Deploy from the root directory if no build process
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Clean up and set feature flag (optional)
       run: |
         echo "Setting feature flag for branch ${GITHUB_REF}"
-        echo "Feature flag deployed: ${GITHUB_REF}" > .
+        echo "Feature flag deployed: ${GITHUB_REF}" > ./index.html
