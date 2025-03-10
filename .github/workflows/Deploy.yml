@@ -7,7 +7,6 @@ on:
       - Feature_1
       - Feature_2
       - Feature_3
-    # Trigger deployment only on specific branches
 
 jobs:
   deploy:
@@ -18,14 +17,25 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
 
+    - name: Set up Git configuration
+      run: |
+        git config user.name "kishangupta1216"
+        git config user.email "guptakishan1216@gmail.com"
+
+    - name: Initialize gh-pages branch (if not exists)
+      run: |
+        git fetch origin gh-pages || git checkout --orphan gh-pages
+        git reset --hard
+        git clean -fd
+
     - name: Deploy to GitHub Pages
-      uses: jamesives/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        branch: gh-pages  # The branch that will contain your GitHub Pages site
-        folder: .   # The folder where your build output is located, adjust accordingly
-        token: ${{ secrets.GH_TOKEN }} # GitHub automatically provides a token for accessing the repo
+        branch: gh-pages
+        folder: .  # Adjust if you're deploying from a different directory
+        token: ${{ secrets.GH_TOKEN }}
 
     - name: Clean up and set feature flag (optional)
       run: |
         echo "Setting feature flag for branch ${GITHUB_REF}"
-        echo "Feature flag deployed: ${GITHUB_REF}" > ./dist/index.html
+        echo "Feature flag deployed: ${GITHUB_REF}" > .
