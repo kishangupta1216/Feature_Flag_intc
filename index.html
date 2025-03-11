@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Page</title>
+    <script>
+
+        // Function to show an alert when the button is clicked
+        function showAlert() {
+            alert("Hello! This is your custom message.");
+        // Function to show an alert with the entered name
+        function greetUser() {
+            const userName = document.getElementById("nameInput").value;
+            if (userName) {
+                alert("Hello, " + userName + "! Welcome to my website.");
+            } else {
+                alert("Please enter your name.");
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to my main feature_1</h1>
+    </header>
+
+    <main>
+        <p>This is a simple HTML file.</p>
+        <p>Feel free to modify it!</p>
+
+        <!-- Added a button that calls showAlert() when clicked -->
+        <button onclick="showAlert()">Click Me</button>
+
+
+        <!-- Form for user input -->
+        <form onsubmit="event.preventDefault(); greetUser();">
+            <label for="nameInput">Enter your name:</label>
+            <input type="text" id="nameInput" placeholder="Your name here" required>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+</body>
+</html>
