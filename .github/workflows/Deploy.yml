@@ -36,7 +36,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          branch: ${GITHUB_REF}  # The branch where the pages will be deployed
+          branch: gh-pages  # The branch where the pages will be deployed
           folder: ./ # The folder to deploy (adjust based on your project structure)
           
           # Conditional feature flag approach based on the branch
